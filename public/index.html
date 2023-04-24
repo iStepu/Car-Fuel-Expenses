@@ -24,9 +24,30 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>React App</title>
+    <title>Car Fuel Expense Calculator</title>
   </head>
   <body>
+    <h2> Calculate your fuel expenses </h2>
+    <p> Click on the button to add the row to the table </p>
+    <button id="btn" onclick="Add()"> Calculate </button>
+    <br><br>
+    <h3> Gas Cars </h3>
+    <table id="myTable">
+      <thead>
+         <th> Car Register </th>
+         <th> Distance (km) </th>
+         <th> Refuel (l) </th>
+         <th> Price (€) </th>
+      </thead>
+      <tbody>
+         <tr>
+            <td> <input type='text' id='Register'>  </td>
+            <td> <input type='number' id='Distance'> </td>
+            <td> <input type='number' id='Refuel'> </td>
+            <td> <input type='number' id='Price'> </td>
+         </tr>
+      </tbody>
+   </table>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
     <!--
@@ -39,5 +60,45 @@
       To begin the development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
+    <script>
+   
+      function Add() {
+         // Get the table element in which you want to add row
+         let table = document.getElementById("myTable");
+      
+         let Register = document.getElementById('Register').value;
+         let Distance = document.getElementById('Distance').value;
+         let Refuel = document.getElementById('Refuel').value;
+         let Price = document.getElementById('Price').value;
+   
+         Distance = Distance / 100;
+         Refuel = Refuel / Distance;
+         Price = Price / Distance;
+   
+         // Create a row using the inserRow() method
+         let row = table.insertRow(-1);
+      
+         
+         let c1 = row.insertCell(0);
+         let c2 = row.insertCell(1);
+         let c3 = row.insertCell(2);
+         let c4 = row.insertCell(3);
+         
+         // Add data to c1 and c2
+         c1.innerText = Register;
+         c2.innerText = 100;
+         c3.innerText = Refuel.toFixed(2);
+         c4.innerText = Price.toFixed(2);
+       
+         // Append row to table body
+         table.appendChild(row);
+         
+         
+         const msgListItem = document.createElement('li');
+         msgListItem.textContent = Empty;
+         Register.value = '';
+         
+      }
+   </script>
   </body>
 </html>
